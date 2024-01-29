@@ -11,8 +11,8 @@ class ContactForm(forms.ModelForm):
     def clean_email(self):
         email = self.cleaned_data.get('email')
 
-        if models.Contact.objects.filter(email=email).exists():
-            self.add_error('email', ValidationError('Email already exists.', code='invalid'))
+        if models.Contact.objects.filter(email=email).exclude(pk=self.instance.pk).exists():
+            raise ValidationError('Email already exists.')
         return email
     
     def clean_phone(self):

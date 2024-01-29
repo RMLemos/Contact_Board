@@ -55,7 +55,7 @@ def update(request, contact_id):
 
         return render(
             request,
-            'backoffice/create.html',
+            'backoffice/update.html',
             context
         )
     
@@ -66,14 +66,14 @@ def update(request, contact_id):
     
     return render(
             request,
-            'backoffice/create.html',
+            'backoffice/update.html',
             context
         )
 
 
 def delete(request, contact_id):
     contact = get_object_or_404(
-        Contact, pk=contact_id, show=True
+        Contact, pk=contact_id, status=True
     )
     confirmation = request.POST.get('confirmation', 'no')
 
