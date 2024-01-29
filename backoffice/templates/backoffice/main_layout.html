@@ -5,11 +5,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'backoffice/css/style.css' %}">
-    <title>Document</title>
+    <title>{{ site_title }}</title>
 </head>
 <body>
+
+    <header class="header">
+        <h1 class="header-heading">
+          <a href="{% url 'backoffice:index' %}" class="header-link">
+            Agenda
+          </a>
+        </h1>
+      
+        <nav class="menu">
+          <ul class="menu-list">
+            <li class="menu-item">
+              <a href="" class="menu-link">
+                Link 1
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="" class="menu-link">
+                Link 2
+              </a>
+            </li>
+          </ul>
+        </nav>
+      
+        <div class="search">
+          <form 
+            action="{% url 'backoffice:search' %}" 
+            method="GET"
+          >
+          <input 
+            type="search" 
+            class="search-input"
+            placeholder="Search"
+            id="search"
+            name="q"
+          >
+          </form>
+        </div>
+    </header>
+
     <main class="content">
     {% block content %}
     {% endblock content %}
+
 </body>
 </html>
