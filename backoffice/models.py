@@ -20,7 +20,7 @@ class Contact(models.Model):
     country = models.CharField('Country', max_length=50, blank=True)
     created_at = models.DateField('Created at', auto_now_add=True)
     updated_at = models.DateField('Updated at', auto_now=True)
-    status = models.BooleanField('Ativo', default=True)
+    status = models.BooleanField('Ative', default=True)
     category = models.ForeignKey(
         Category, 
         on_delete=models.SET_NULL,
