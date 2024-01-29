@@ -12,15 +12,15 @@
     <header class="header">
         <h1 class="header-heading">
           <a href="{% url 'backoffice:index' %}" class="header-link">
-            Agenda
+            Contact Manager
           </a>
         </h1>
       
         <nav class="menu">
           <ul class="menu-list">
             <li class="menu-item">
-              <a href="" class="menu-link">
-                Link 1
+              <a href="{% url 'backoffice:create' %}" class="menu-link">
+                New Contact
               </a>
             </li>
             <li class="menu-item">
@@ -42,14 +42,36 @@
             placeholder="Search"
             id="search"
             name="q"
+            value="{{ request.GET.q.strip }}"
           >
           </form>
         </div>
     </header>
 
     <main class="content">
-    {% block content %}
-    {% endblock content %}
+        {% block content %}
+        {% endblock content %}
+
+        {% if page_obj %}
+            <div class="pagination">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1&q={{ request.GET.q.strip }}">&laquo; first</a>
+                        <a href="?page={{ page_obj.previous_page_number }}&q={{ request.GET.q.strip }}">previous</a>
+                    {% endif %}
+            
+                    <span class="current">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    </span>
+            
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}&q={{ request.GET.q.strip }}">next</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}&q={{ request.GET.q.strip }}">last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+        {% endif %}
+        </main>
 
 </body>
 </html>

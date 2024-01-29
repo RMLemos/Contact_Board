@@ -1,12 +1,17 @@
-from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect, render
+from django.core.paginator import Paginator
+from django.db.models import Q
 from backoffice.models import Contact
 
 def index(request):
     contacts = Contact.objects.filter(status=True).order_by('first_name')
 
+    paginator = Paginator(contacts, 15)  # Show 25 contacts per page.
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+
     context = {
-        'contacts': contacts,
+        'page_obj': page_obj,
         'site_title': 'Contact Board'
     }
 
@@ -32,9 +37,13 @@ def search(request):
             Q(email__icontains=search_value)
         )\
         .order_by('first_name')
+    
+    paginator = Paginator(contacts, 15)  # Show 25 contacts per page.
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
 
     context = {
-        'contacts': contacts,
+        'page_obj': page_obj,
         'site_title': 'Search - '
     }
 
