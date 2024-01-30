@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 
@@ -5,6 +6,7 @@ from backoffice.forms import ContactForm
 from backoffice.models import Contact
 
 
+@login_required(login_url=('backoffice:login'))
 def create(request):
     form_action = reverse('backoffice:create')
     if request.method == 'POST':
@@ -37,6 +39,7 @@ def create(request):
         )
 
 
+@login_required(login_url=('backoffice:login'))
 def update(request, contact_id):
     contact = get_object_or_404(Contact, pk=contact_id, status=True)
     form_action = reverse('backoffice:update', args=(contact_id,))
@@ -71,6 +74,7 @@ def update(request, contact_id):
         )
 
 
+@login_required(login_url=('backoffice:login'))
 def delete(request, contact_id):
     contact = get_object_or_404(
         Contact, pk=contact_id, status=True
