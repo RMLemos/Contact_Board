@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 from django.contrib import auth
 from django.contrib.auth.forms import AuthenticationForm
 
-from backoffice.forms import RegisterForm
+from backoffice.forms import RegisterForm, RegisterUpdateForm
 
 
 def register(request):
@@ -23,6 +23,33 @@ def register(request):
             'form': form
         }
     )
+
+
+def user_update(request):
+    form = RegisterUpdateForm(instance=request.user)
+
+    if request.method != 'POST':
+        return render(
+            request,
+            'backoffice/user_update.html',
+            {
+                'form': form
+            }
+        )
+
+    form = RegisterUpdateForm(data=request.POST, instance=request.user)
+
+    if not form.is_valid():
+        return render(
+            request,
+            'backoffice/user_update.html',
+            {
+                'form': form
+            }
+        )
+
+    form.save()
+    return redirect('backoffice:index')
 
 def login_view(request):
     form = AuthenticationForm(request)
