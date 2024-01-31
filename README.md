@@ -3,10 +3,10 @@
 
 This project is a functional web applicaction in Python and Django. This project has two applicactions. The first one is an backoffice where we can create and manage a contact list, update and/or delete them. There is also a website for an Ebook. The contacts from the form of the website will be saved in the same dababase of the backoffice.
 
-###Contact Board Main Page
+### Contact Board Main Page
 ![Contact Board main Image](/landingpage/static/landingpage/images/contact_manager.png)
 
-###Landing Page Main Page
+### Landing Page Main Page
 ![Landingpage main Image](/landingpage/static/landingpage/images/landingpage.png)
 
 
