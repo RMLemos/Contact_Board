@@ -1,11 +1,51 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'landingpage/css/style.css' %}">
+    <title>Free Ebook</title>
 </head>
 <body>
-    <h1>Home</h1>
+    <section class="hero">
+
+        <header class="hero-content">
+            <h1 class="hero-title">How to write a Website Brief</h1>
+            <p class="hero-description">Do you need an institutional or e-commerce website? Before developing your own website or hiring a professional, it is essential to gather some data through a briefing so that this process is accurate, faster and produces the desired results.</p>
+            <p class="hero-description">In this free ebook, we explain what a briefing is and what the main information needs to be included in the document.</p>
+            <h6 class="form-title">Get your free Ebook</h2>
+            <form 
+            action="{{ form_action }}"
+            method="POST"
+            >
+            {% csrf_token %}
+    
+            <div class="form-content">
+            {% for field in form %}
+                <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {{ field.errors }}
+                </div>
+            {% endfor %}
+            </div>
+            <div class="form-content">
+                <div class="form-group">
+                    <button class="btn" type="submit">Get Ebook</button>
+                </div>
+            </div>
+            </form>
+        </header>
+
+        <div class="breakedge-image">
+            <img src="{% static 'landingpage/images/web_design.jpg' %}" class="move">
+        </div>
+        
+    </section>
+
+    <footer class="footer-style">
+        © {% now "Y" %} Breakedge - Todos os direitos reservados.
+    </footer>
 </body>
 </html>
