@@ -46,4 +46,4 @@ python manage.py runserver
 + MySQL
 + Python
 + Html
-+ Css
++ CSS
