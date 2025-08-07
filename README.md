@@ -1,7 +1,7 @@
 ![Contact Board Banner Image](/landingpage/static/landingpage/images/github_header.png)
 <h2 align='center'>Contact Board</h2>
 
-This project is a functional web applicaction in Python and Django. This project has two applicactions. The first one is a backoffice where we can create and manage a contact list, update and/or delete them. There is also a website for an Ebook. The contacts from the form of the website will be saved in the same dababase of the backoffice.
+This project is a functional web application developed in Python and Django. This project consists of two applications. The first one is a backoffice where users can create and manage a contact list, as well as update and delete contacts. The second is a website for an Ebook. The contacts submitted through the website's form are saved in the same database as the backoffice.
 
 ### Contact Board Main Page
 ![Contact Board main Image](/landingpage/static/landingpage/images/contact_manager.png)
